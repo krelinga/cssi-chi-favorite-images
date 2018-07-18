@@ -1,3 +1,5 @@
+var giphy_api_key = "GgFZf48OO1lfS1C4hm9gMI0jt2sMIaFS"
+
 // Runs the given query and fetches the first result.
 // Args:
 // - query: the string to use for the query.
@@ -5,10 +7,12 @@
 //                   Should take a single argument: the JSON returned from
 //                   giphy's API
 function queryGiphy(query, resultCallback) {
-  // TODO(siham): write this part.  Make sure that displayResult() (below)
-  //              works as a resultCallback ... probably need to open console
-  //              in browser and manually invoke
-  //              queryGihph('some query', displayResult)
+
+  var giphy_url = "http://api.giphy.com/v1/gifs/search?api_key="
+                  + giphy_api_key
+                  +"&q="+query
+                  +"&limit=" + 1
+  jQuery.get(giphy_url, resultCallback)
 }
 
 // Makes the element with ID 'resultPane' visible, and sets the element with ID
@@ -32,6 +36,9 @@ function displayResult(resultJson) {
 function addGifToFavorites(gifUrl, doneCallback) {
   jQuery.post("/add_favorite", {url: gifUrl}, doneCallback);
 }
+
+// TODO: Create an event handler for when the button is clicked
+// that calls queryGiphy using the displayResult function as the callback
 
 window.addEventListener('load', () => {
   // TODO: add other event listeners here!
