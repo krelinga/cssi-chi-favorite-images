@@ -26,6 +26,6 @@ class ListFavoritesHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/add_favorite', AddFavorite),
-    ('/list_favorites', ListFavorites)
+    ('/add_favorite', AddFavoriteHandler),
+    ('/list_favorites', ListFavoritesHandler)
 ], debug=True)
